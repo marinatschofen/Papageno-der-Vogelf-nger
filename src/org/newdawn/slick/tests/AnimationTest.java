@@ -16,7 +16,7 @@ import org.newdawn.slick.SpriteSheet;
  * @author kevin
  */
 public class AnimationTest extends BasicGame {
-	//HIHIHIH
+	//HIHIHIH jjj
 	/** The animation loaded */
 	private Animation animation;
 	/** The limited animation loaded */
