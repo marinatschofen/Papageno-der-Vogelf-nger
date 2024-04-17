@@ -3,7 +3,8 @@ package at.mat.game.objects;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Shape;
-public abstract class Spielobjekt {
+
+public class Obstacle {
     private int x;
     private int y;
     private int width;
@@ -11,16 +12,22 @@ public abstract class Spielobjekt {
     private Image image;
     private Shape shape;
 
-    public Spielobjekt(int x, int y, Image image) {
+    public Obstacle(int x, int y, Image image) {
         this.x = x;
         this.y = y;
         this.image = image;
         this.width = image.getWidth();
         this.height = image.getHeight();
     }
-    public abstract void draw(Graphics g);
-    public abstract Shape getShape();
-    public abstract void update(int delta);
+    public void draw(Graphics g){
+        this.getImage().drawCentered(this.getX(),this.getY());
+    }
+    public Shape getShape(){
+        return shape;
+    }
+    public void update(int delta){
+
+    }
 
     public int getX() {
         return x;

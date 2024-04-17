@@ -4,9 +4,9 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Shape;
 
-public class NewUfo extends Spielobjekt {
+public class NewVogel extends Vogel {
 
-    public NewUfo(int x, int y, Image image) {
+    public NewVogel(int x, int y, Image image) {
         super(x, y, image);
     }
 
@@ -18,7 +18,7 @@ public class NewUfo extends Spielobjekt {
 
     @Override
     public Shape getShape() {
-        return null;
+        return shape;
     }
 
     @Override
