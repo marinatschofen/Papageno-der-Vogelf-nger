@@ -2,6 +2,7 @@ package at.mat.game.objects;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 public abstract class Vogel {
     private int x;
@@ -9,7 +10,7 @@ public abstract class Vogel {
     private int width;
     private int height;
     private Image image;
-    private Shape shape;
+    public Shape shape;
 
     public Vogel(int x, int y, Image image) {
         this.x = x;

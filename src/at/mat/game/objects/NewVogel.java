@@ -2,18 +2,19 @@ package at.mat.game.objects;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
 public class NewVogel extends Vogel {
 
     public NewVogel(int x, int y, Image image) {
         super(x, y, image);
+        this.shape = new Rectangle(this.getX(), this.getY(),this.getWidth(), this.getHeight());
     }
 
     @Override
     public void draw(Graphics g) {
         this.getImage().drawCentered(this.getX(),this.getY());
-
     }
 
     @Override
@@ -30,4 +31,16 @@ public class NewVogel extends Vogel {
         this.setY(this.getY()+4);
 
     }
+
+    public boolean intersects(Shape shape) {
+        // Berechne die Begrenzungsrahmen für den Vogel und den Pfeil
+
+        // Überprüfe, ob sich die Begrenzungsrahmen überschneiden
+        if (this.shape.intersects(shape)) {
+            // Punktestand erhöhen oder andere Logik für das Treffen implementieren
+            return true;
+        }
+        return false;
+    }
+
 }

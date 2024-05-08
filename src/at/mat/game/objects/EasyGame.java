@@ -23,7 +23,7 @@ public class EasyGame extends BasicGame {
 
 
     public static void main(String[] args) throws SlickException {
-        AppGameContainer container = new AppGameContainer(new Game("Vogel"));
+        AppGameContainer container = new AppGameContainer(new EasyGame("Vogel"));
         container.setDisplayMode(1024, 768, false);
         //container.setClearEachFrame(false);
         container.setMinimumLogicUpdateInterval(25);
@@ -36,10 +36,10 @@ public class EasyGame extends BasicGame {
 
     @Override
     public void init(GameContainer container) throws SlickException {
-        background = new Image("assets/pics/background.png");
+        background = new Image("assets/pics/Hintergrund.png");
         bird = new NewVogel(100,100, new Image ("assets/pics/meinufo.png"));
-        obstacles.add(new Obstacle(800, 300, new Image("assets/pics/obstacle.png")));
-        obstacles.add(new Obstacle(1200, 200, new Image("assets/pics/obstacle.png")));
+        obstacles.add(new Obstacle(800, 300, new Image("assets/pics/obstacle.png"),"Stein1"));
+        obstacles.add(new Obstacle(1200, 200, new Image("assets/pics/obstacle.png"),"Stein2"));
 
 
     }
@@ -53,15 +53,16 @@ public class EasyGame extends BasicGame {
             container.exit();
         }
         // Bewegung des Vogels aktualisieren
-    bird.update(delta);
+        bird.update(delta);
 
     // Kollisionserkennung zwischen Vogel und Hindernissen
-        for (Obstacle obstacle; obstacles;) {
-        if (bird.intersects(obstacle)) {
-            // Kollision! Hier kann man Spiellogik für den Fall einer Kollision implementieren
-            container.exit(); // Spiel beenden
-            score++; // Punktestand erhöhen
-        }
+        for (Obstacle obstacle : obstacles) {
+            if (bird.intersects(obstacle.getShape())) {
+                // Kollision! Hier kann man Spiellogik für den Fall einer Kollision implementieren
+                //container.exit(); // Spiel beenden
+                if (obstacle.getName() == "") System.out.println("KKK");
+                score++; // Punktestand erhöhen
+            }
         }
 
         // Hindernisse bewegen

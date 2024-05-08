@@ -2,6 +2,7 @@ package at.mat.game.objects;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
 public class Obstacle {
@@ -11,14 +12,26 @@ public class Obstacle {
     private int height;
     private Image image;
     private Shape shape;
+    private String name ="";
 
-    public Obstacle(int x, int y, Image image) {
+    public Obstacle(int x, int y, Image image, String name) {
         this.x = x;
         this.y = y;
         this.image = image;
         this.width = image.getWidth();
         this.height = image.getHeight();
+        this.shape = new Rectangle(this.getX(), this.getY(),this.getWidth(), this.getHeight());
+        this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void draw(Graphics g){
         this.getImage().drawCentered(this.getX(),this.getY());
     }
@@ -69,4 +82,6 @@ public class Obstacle {
         this.image = image;
     }
 
+    public void draw() {
+    }
 }
