@@ -1,7 +1,6 @@
 package at.mat.game.objects;
 
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
+import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 public abstract class Vogel {
@@ -11,13 +10,33 @@ public abstract class Vogel {
     private int height;
     private Image image;
     public Shape shape;
+    private Animation animation;
 
-    public Vogel(int x, int y, Image image) {
+    public Animation getAnimation() {
+        return animation;
+    }
+
+    public void setAnimation(Animation animation) {
+        this.animation = animation;
+    }
+
+    public Vogel(int x, int y, Image image, String spriteanimation,String aniname) {
         this.x = x;
         this.y = y;
         this.image = image;
         this.width = image.getWidth();
         this.height = image.getHeight();
+        animation = new Animation();
+        PackedSpriteSheet pss = null;
+        try {
+            pss = new PackedSpriteSheet(spriteanimation);
+        } catch (SlickException e) {
+            throw new RuntimeException(e);
+        }
+        for (int i=1;i<=11;i++){
+            animation.addFrame(pss.getSprite(aniname+"_"+i+".png"),100);
+        }
+
     }
     public abstract void draw(Graphics g);
     public abstract Shape getShape();

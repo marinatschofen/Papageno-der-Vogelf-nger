@@ -13,6 +13,7 @@ public class EasyGame extends BasicGame {
         private int score;
          private NewVogel bird;
          private Image background;
+         private Arrow arrow;
         private List<Obstacle> obstacles;
 
         public EasyGame(String title) {
@@ -24,7 +25,7 @@ public class EasyGame extends BasicGame {
 
     public static void main(String[] args) throws SlickException {
         AppGameContainer container = new AppGameContainer(new EasyGame("Vogel"));
-        container.setDisplayMode(1024, 768, false);
+        container.setDisplayMode(728, 728, false);
         //container.setClearEachFrame(false);
         container.setMinimumLogicUpdateInterval(25);
         container.setTargetFrameRate(60);
@@ -37,9 +38,10 @@ public class EasyGame extends BasicGame {
     @Override
     public void init(GameContainer container) throws SlickException {
         background = new Image("assets/pics/Hintergrund.png");
-        bird = new NewVogel(100,100, new Image ("assets/pics/meinufo.png"));
+        bird = new NewVogel(100,100, new Image ("assets/pics/meinufo.png"),"assets/animation/texture.def","flame");
         obstacles.add(new Obstacle(800, 300, new Image("assets/pics/obstacle.png"),"Stein1"));
         obstacles.add(new Obstacle(1200, 200, new Image("assets/pics/obstacle.png"),"Stein2"));
+        arrow = new Arrow(200, 200, new Image("assets/pics/arrow.jpg"));
 
 
     }
@@ -82,6 +84,7 @@ public class EasyGame extends BasicGame {
     public void render(GameContainer container, Graphics g) throws SlickException {
         background.draw();
         bird.draw(g);
+        arrow.draw(g);
         for (Obstacle obstacle : obstacles) {
             obstacle.draw();
         }
