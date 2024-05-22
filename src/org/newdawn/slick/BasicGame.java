@@ -172,6 +172,7 @@ public abstract class BasicGame implements Game, InputListener {
 	}
 
 	/**
+	 * @return
 	 * @see org.newdawn.slick.Game#update(org.newdawn.slick.GameContainer, int)
 	 */
 	public abstract void update(GameContainer container, int delta) throws SlickException;

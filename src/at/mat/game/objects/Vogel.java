@@ -33,8 +33,8 @@ public abstract class Vogel {
         } catch (SlickException e) {
             throw new RuntimeException(e);
         }
-        for (int i=1;i<=11;i++){
-            animation.addFrame(pss.getSprite(aniname+"_"+i+".png"),100);
+        for (int i=1;i<=8;i++){
+            animation.addFrame(pss.getSprite(aniname+"_0"+i+".png"),100);
         }
 
     }

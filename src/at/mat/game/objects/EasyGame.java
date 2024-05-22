@@ -4,6 +4,7 @@ import org.newdawn.slick.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 public class EasyGame extends BasicGame {
 
         public static final String name = "Vogel";
@@ -15,6 +16,9 @@ public class EasyGame extends BasicGame {
          private Image background;
          private Arrow arrow;
         private List<Obstacle> obstacles;
+        private Music music;
+
+
 
         public EasyGame(String title) {
             super(title);
@@ -38,15 +42,17 @@ public class EasyGame extends BasicGame {
     @Override
     public void init(GameContainer container) throws SlickException {
         background = new Image("assets/pics/Hintergrund.png");
-        bird = new NewVogel(100,100, new Image ("assets/pics/meinufo.png"),"assets/animation/texture.def","flame");
+        bird = new NewVogel(100,100, new Image ("assets/pics/meinufo.png"),"assets/animation/texture.def","1Vogel");
         obstacles.add(new Obstacle(800, 300, new Image("assets/pics/obstacle.png"),"Stein1"));
         obstacles.add(new Obstacle(1200, 200, new Image("assets/pics/obstacle.png"),"Stein2"));
-        arrow = new Arrow(200, 200, new Image("assets/pics/arrow.jpg"));
-
+        arrow = new Arrow(200, 200, new Image("assets/pics/arrow.png"));
+        music = new Music("assets/sound/music_game.ogg");
+        music.play();
 
     }
 
     @Override
+
     public void update(GameContainer container, int delta) throws SlickException {
         Input input = container.getInput();
 
@@ -60,9 +66,9 @@ public class EasyGame extends BasicGame {
     // Kollisionserkennung zwischen Vogel und Hindernissen
         for (Obstacle obstacle : obstacles) {
             if (bird.intersects(obstacle.getShape())) {
-                // Kollision! Hier kann man Spiellogik für den Fall einer Kollision implementieren
+                //
                 //container.exit(); // Spiel beenden
-                if (obstacle.getName() == "") System.out.println("KKK");
+                if (obstacle.getName() == "") System.out.println("Volltreffer!");
                 score++; // Punktestand erhöhen
             }
         }
