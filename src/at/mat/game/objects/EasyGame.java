@@ -16,6 +16,7 @@ public class EasyGame extends BasicGame {
          private Image background;
          private Arrow arrow;
         private List<Obstacle> obstacles;
+        private List<Arrow> arrows;
         private Music music;
 
 
@@ -45,7 +46,7 @@ public class EasyGame extends BasicGame {
         bird = new NewVogel(100,100, new Image ("assets/pics/meinufo.png"),"assets/animation/texture.def","1Vogel");
         obstacles.add(new Obstacle(800, 300, new Image("assets/pics/obstacle.png"),"Stein1"));
         obstacles.add(new Obstacle(1200, 200, new Image("assets/pics/obstacle.png"),"Stein2"));
-        arrow = new Arrow(200, 200, new Image("assets/pics/arrow.png"));
+        arrow = new Arrow(320, 600, new Image("assets/pics/arrow.png"));
         music = new Music("assets/sound/music_game.ogg");
         music.play();
 
@@ -60,15 +61,31 @@ public class EasyGame extends BasicGame {
         if (input.isKeyPressed(Input.KEY_ESCAPE)) {
             container.exit();
         }
+
+        // mit space starte pfeil
+        if (input.isKeyPressed(Input.KEY_SPACE)) {
+            arrow.setShooting(true);
+        }
+        if (input.isKeyPressed(Input.KEY_D)) {
+            arrow.rotate(0);
+        }
+        if (input.isKeyPressed(Input.KEY_S)) {
+            arrow.rotate(1);
+        }
+
+
         // Bewegung des Vogels aktualisieren
         bird.update(delta);
 
+        // arrow update
+        arrow.update(delta);
+
     // Kollisionserkennung zwischen Vogel und Hindernissen
-        for (Obstacle obstacle : obstacles) {
-            if (bird.intersects(obstacle.getShape())) {
+        for (Arrow arrow1;) {
+            if (bird.intersects(arrow.getBounds())) {
                 //
                 //container.exit(); // Spiel beenden
-                if (obstacle.getName() == "") System.out.println("Volltreffer!");
+                if (arrow.getBounds() == "") System.out.println("Volltreffer!");
                 score++; // Punktestand erhöhen
             }
         }
