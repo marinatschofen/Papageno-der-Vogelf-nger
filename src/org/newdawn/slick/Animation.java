@@ -175,8 +175,11 @@ public class Animation implements Renderable {
 	       addFrame(duration[i], x, y);
 	    }
 	}
-	
-	/**
+
+    public Animation(String s, String s1) {
+    }
+
+    /**
 	 * Add animation frame to the animation.
 	 * @param duration The duration to display the frame for
 	 * @param x The x location of the frame on the <tt>SpriteSheet</tt>

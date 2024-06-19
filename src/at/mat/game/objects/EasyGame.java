@@ -16,17 +16,18 @@ public class EasyGame extends BasicGame {
          private Image background;
          private Arrow arrow;
         private List<Obstacle> obstacles;
-        private List<Arrow> arrows;
         private Music music;
 
+        private  Animation playerAnimation;
+        private Animation herbert;
 
 
-        public EasyGame(String title) {
+
+    public EasyGame(String title) {
             super(title);
             obstacles = new ArrayList<>();
-        }
 
-
+    }
 
     public static void main(String[] args) throws SlickException {
         AppGameContainer container = new AppGameContainer(new EasyGame("Vogel"));
@@ -39,17 +40,29 @@ public class EasyGame extends BasicGame {
     }
 
 
-
     @Override
     public void init(GameContainer container) throws SlickException {
         background = new Image("assets/pics/Hintergrund.png");
-        bird = new NewVogel(100,100, new Image ("assets/pics/meinufo.png"),"assets/animation/texture.def","1Vogel");
-        obstacles.add(new Obstacle(800, 300, new Image("assets/pics/obstacle.png"),"Stein1"));
-        obstacles.add(new Obstacle(1200, 200, new Image("assets/pics/obstacle.png"),"Stein2"));
+        //bird = new NewVogel(100,100, new Image("assets/animation/vogel1"), "assets/animation/texture.def","Vogel");
+       // bird = new NewVogel(300,100, new Image("assets/animation/texture1.png"), "assets/animation/texture1.def", "");
+        obstacles.add(new Obstacle(400, 600, new Image("assets/pics/herbert.png"),"Herbert"));
         arrow = new Arrow(320, 600, new Image("assets/pics/arrow.png"));
         music = new Music("assets/sound/music_game.ogg");
         music.play();
+        // Beim initialisieren
+        /*
+        playerAnimation = new Animation();
+        PackedSpriteSheet pss = new PackedSpriteSheet("assets/animation/texture.def");
+        for (int i=1;i<=8;i++){
+            playerAnimation.addFrame(pss.getSprite("1Vogel_0"+i+".png"),100);
+        }
 
+         */
+        herbert = new Animation();
+        PackedSpriteSheet pss = new PackedSpriteSheet("assets/animation/texture.def");
+        for (int i=1;i<=4;i++){
+            herbert.addFrame(pss.getSprite("stat0"+i+".png"),100);
+        }
     }
 
     @Override
@@ -75,21 +88,18 @@ public class EasyGame extends BasicGame {
 
 
         // Bewegung des Vogels aktualisieren
-        bird.update(delta);
+        //bird.update(delta);
 
         // arrow update
         arrow.update(delta);
-
+/*
     // Kollisionserkennung zwischen Vogel und Hindernissen
-        for (Arrow arrow1;) {
-            if (bird.intersects(arrow.getBounds())) {
-                //
-                //container.exit(); // Spiel beenden
-                if (arrow.getBounds() == "") System.out.println("Volltreffer!");
+                 if (bird.intersects(arrow.getBounds())) {
+                System.out.println("Volltreffer!");
                 score++; // Punktestand erhöhen
             }
-        }
-
+       // }
+*/
         // Hindernisse bewegen
         Iterator<Obstacle> iterator = obstacles.iterator();
         while (iterator.hasNext()) {
@@ -106,8 +116,9 @@ public class EasyGame extends BasicGame {
     @Override
     public void render(GameContainer container, Graphics g) throws SlickException {
         background.draw();
-        bird.draw(g);
+  //      bird.draw(g);
         arrow.draw(g);
+        herbert.draw(0,580);
         for (Obstacle obstacle : obstacles) {
             obstacle.draw();
         }
